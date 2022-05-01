@@ -1,8 +1,8 @@
 let pokemons;
 let currentPokemon;
 let selectedPokemon;
-let pokemonLenght = 20;
-let pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898';
+let pokemonLenght = 898;
+let pokemonURL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898';
 
 //Funktionen//////////////////////////////////////////////////////////////////////
 
