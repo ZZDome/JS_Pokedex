@@ -1,64 +1,77 @@
 let pokemons;
 let currentPokemon;
 let selectedPokemon;
-let pokemonLenght = 898;
+let pokemonLenght = 20;
 let pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898';
 
-//Funktionen//////////////////////////////////////////////////////////////////////
+//Functions//////////////////////////////////////////////////////////////////////
 
 function init() {
-    drawHeader();
-    drawMainContent();
-    loadPokemons();
+  drawHeader();
+  drawMainContent();
+  loadPokemons();
 }
 
 function drawHeader() {
-    let content = document.getElementById('content');
-    content.innerHTML = templateHeader();
+  let content = document.getElementById('content');
+  content.innerHTML = templateHeader();
 }
 
-function drawMainContent(){
-    let content = document.getElementById('content');
-    content.innerHTML += templateMainContent();
+function drawMainContent() {
+  let content = document.getElementById('content');
+  content.innerHTML += templateMainContent();
 }
 
-async function loadPokemons(){
-    let response = await fetch(pokemonsURL);
-    pokemons = await response.json();
-    showPokemons();
+async function loadPokemons() {
+  let response = await fetch(pokemonsURL);
+  pokemons = await response.json();
+  showPokemons();
 }
 
-async function showPokemons(){
-    let content = document.getElementById('mainContent');
-    for (let id = 0; id < pokemonLenght; id++) {
-        if(selectedPokemon == undefined){
-            let pokemonPATH = pokemons.results[id].url
-            let responses = await fetch(pokemonPATH)
-            currentPokemon = await responses.json();
-            content.innerHTML += templateShowPokemons(id, currentPokemon);
-        }else{
-            break;
-        }
+async function showPokemons() {
+  let content = document.getElementById('mainContent');
+  for (let id = 0; id < pokemonLenght; id++) {
+    if (selectedPokemon == undefined) {
+      let pokemonPATH = pokemons.results[id].url
+      let responses = await fetch(pokemonPATH)
+      currentPokemon = await responses.json();
+      content.innerHTML += templateShowPokemons(id, currentPokemon);
+    } else {
+      break;
     }
+  }
 }
 
-async function loadPokemonCard(id){
-    selectedPokemon = id;
-    let pokemonURL = pokemons.results[id].url;
-    let response = await fetch(pokemonURL)
-    selectedPokemon = await response.json();
-    showPokemonCard(id);
+async function loadPokemonCard(id) {
+  selectedPokemon = id;
+  let pokemonURL = pokemons.results[id].url;
+  let response = await fetch(pokemonURL)
+  selectedPokemon = await response.json();
+  showPokemonCard(id);
 }
 
-function showPokemonCard(id){
-    let content = document.getElementById('mainContent');
-    content.innerHTML = templatePokemonCard(id);
+function showPokemonCard(id) {
+  let cardBG = drawCardBackground();
+  let content = document.getElementById('mainContent');
+  content.innerHTML = templatePokemonCard(id, cardBG);
+}
+
+function drawCardBackground(){
+  let type = selectedPokemon.types[0].type.name;
+  switch (type) {
+    case 'fire':
+      return 'red';
+    case 'water':
+      return 'blue';
+    default:
+      return 'white';
+  }
 }
 
 //Templates////////////////////////////////////////////////////////////////////////
 
 function templateHeader() {
-    return /* html */ `
+  return /* html */ `
         <div class='headerContainer'>
             <nav class="navbar navbar-light bg-light fixed-top">
               <div class="container-fluid">
@@ -105,16 +118,16 @@ function templateHeader() {
     `;
 }
 
-function templateMainContent(){
-    return /* html */ `
+function templateMainContent() {
+  return /* html */ `
         <div id="mainContent">
 
         </div>
     `;
 }
 
-function templateShowPokemons(id, currentPokemon){
-    return /* html */ `
+function templateShowPokemons(id, currentPokemon) {
+  return /* html */ `
         <div onclick="loadPokemonCard(${id})" class="pokemon">
             <h5>${pokemons.results[id].name}</h5>
             <img src="${currentPokemon.sprites.front_default}">
@@ -122,9 +135,9 @@ function templateShowPokemons(id, currentPokemon){
     `;
 }
 
-function templatePokemonCard(){
-    return /* html */ `
-        <div class="pokemonCard">
+function templatePokemonCard(id, cardBG) {
+  return /* html */ `
+        <div class="pokemonCard" style="background-color: ${cardBG}">
             <h2>${selectedPokemon.name}</h2>
             <img src="${selectedPokemon.sprites.front_default}">
         </div>
