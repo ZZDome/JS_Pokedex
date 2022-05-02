@@ -52,6 +52,10 @@ body{
     height: 600px;
     width: 400px;
     border-radius: 20px;
-    z-index: 2;
+    z-index: 3;
     background-color: beige;
+}
+
+.pokemonCard img{
+    height: 300px;
 }

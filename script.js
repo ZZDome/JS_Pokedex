@@ -42,9 +42,9 @@ async function showPokemons(){
     }
 }
 
-/* async function loadPokemonCard(id){
+async function loadPokemonCard(id){
     selectedPokemon = id;
-    let pokemonURL = 'https://pokeapi.co/api/v2/pokemon/1';
+    let pokemonURL = pokemons.results[id].url;
     let response = await fetch(pokemonURL)
     selectedPokemon = await response.json();
     showPokemonCard(id);
@@ -52,8 +52,8 @@ async function showPokemons(){
 
 function showPokemonCard(id){
     let content = document.getElementById('mainContent');
-    content = templatePokemonCard(id);
-} */
+    content.innerHTML = templatePokemonCard(id);
+}
 
 //Templates////////////////////////////////////////////////////////////////////////
 
@@ -125,8 +125,8 @@ function templateShowPokemons(id, currentPokemon){
 function templatePokemonCard(){
     return /* html */ `
         <div class="pokemonCard">
-            <h5>gewrewr</h5>
-            <img src="#">
+            <h2>${selectedPokemon.name}</h2>
+            <img src="${selectedPokemon.sprites.front_default}">
         </div>
     `;
 }
