@@ -2,6 +2,7 @@ let pokemons;
 let currentPokemon;
 let selectedPokemon;
 let loadingCancel = false;
+let loading = false;
 let pokemonCount = 0;
 let pokemonCountStep;
 let pokemonLenght = 50;
@@ -35,15 +36,14 @@ async function showPokemons() {
   let content = document.getElementById('mainContent');
   let pokemonCountStep = pokemonCount + pokemonLenght;
   for (let id = pokemonCount; id < pokemonCountStep; id++) {
-    
     if (!loadingCancel && pokemonCount <= 898) {
       let pokemonPATH = pokemons.results[id].url
       let responses = await fetch(pokemonPATH)
       currentPokemon = await responses.json();
-      if(!loadingCancel){
+      if (!loadingCancel) {
         content.innerHTML += templateShowPokemons(id, currentPokemon);
         pokemonCount++
-      }else{
+      } else {
         break;
       }
     } else {
@@ -52,7 +52,7 @@ async function showPokemons() {
   }
 }
 
-function loadBreak(id){
+function loadBreak(id) {
   loadingCancel = true;
   loadPokemonCard(id);
 }
@@ -70,7 +70,7 @@ function showPokemonCard(id) {
   content.innerHTML += templatePokemonCard(id, cardBG);
 }
 
-function drawCardBackground(){
+function drawCardBackground() {
   let type = selectedPokemon.types[0].type.name;
   switch (type) {
     case 'fire':
@@ -81,6 +81,12 @@ function drawCardBackground(){
       return 'white';
   }
 }
+
+function checkScrollBottom() {
+  if (document.getElementById('mainContent').offsetHeight + document.getElementById('mainContent').scrollTop >= document.getElementById('mainContent').scrollHeight) {
+    showPokemons();
+  }
+};
 
 //Templates////////////////////////////////////////////////////////////////////////
 
@@ -134,7 +140,7 @@ function templateHeader() {
 
 function templateMainContent() {
   return /* html */ `
-        <div id="mainContent">
+        <div onscroll="checkScrollBottom()" id="mainContent">
 
         </div>
     `;
@@ -147,6 +153,7 @@ function templateShowPokemons(id, currentPokemon) {
             <img src="${currentPokemon.sprites.front_default}">
         </div>
     `;
+    
 }
 
 function templatePokemonCard(id, cardBG) {
