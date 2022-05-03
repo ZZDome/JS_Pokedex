@@ -48,6 +48,7 @@ body{
 }
 
 .pokemonCard{
+    position: absolute;
     padding: 10px;
     height: 600px;
     width: 400px;

@@ -1,7 +1,10 @@
 let pokemons;
 let currentPokemon;
 let selectedPokemon;
-let pokemonLenght = 20;
+let loadingCancel = false;
+let pokemonCount = 0;
+let pokemonCountStep;
+let pokemonLenght = 50;
 let pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898';
 
 //Functions//////////////////////////////////////////////////////////////////////
@@ -30,20 +33,31 @@ async function loadPokemons() {
 
 async function showPokemons() {
   let content = document.getElementById('mainContent');
-  for (let id = 0; id < pokemonLenght; id++) {
-    if (selectedPokemon == undefined) {
+  let pokemonCountStep = pokemonCount + pokemonLenght;
+  for (let id = pokemonCount; id < pokemonCountStep; id++) {
+    
+    if (!loadingCancel && pokemonCount <= 898) {
       let pokemonPATH = pokemons.results[id].url
       let responses = await fetch(pokemonPATH)
       currentPokemon = await responses.json();
-      content.innerHTML += templateShowPokemons(id, currentPokemon);
+      if(!loadingCancel){
+        content.innerHTML += templateShowPokemons(id, currentPokemon);
+        pokemonCount++
+      }else{
+        break;
+      }
     } else {
       break;
     }
   }
 }
 
+function loadBreak(id){
+  loadingCancel = true;
+  loadPokemonCard(id);
+}
+
 async function loadPokemonCard(id) {
-  selectedPokemon = id;
   let pokemonURL = pokemons.results[id].url;
   let response = await fetch(pokemonURL)
   selectedPokemon = await response.json();
@@ -53,7 +67,7 @@ async function loadPokemonCard(id) {
 function showPokemonCard(id) {
   let cardBG = drawCardBackground();
   let content = document.getElementById('mainContent');
-  content.innerHTML = templatePokemonCard(id, cardBG);
+  content.innerHTML += templatePokemonCard(id, cardBG);
 }
 
 function drawCardBackground(){
@@ -128,7 +142,7 @@ function templateMainContent() {
 
 function templateShowPokemons(id, currentPokemon) {
   return /* html */ `
-        <div onclick="loadPokemonCard(${id})" class="pokemon">
+        <div onclick="loadBreak(${id})" class="pokemon">
             <h5>${pokemons.results[id].name}</h5>
             <img src="${currentPokemon.sprites.front_default}">
         </div>
