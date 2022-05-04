@@ -49,8 +49,8 @@ async function showPokemons() {
   let pokemonCountStep = pokemonCount + pokemonLenght;
   for (let id = pokemonCount; id < pokemonCountStep; id++) {
     if (!loadingCancel && pokemonCount <= 898) {
-      let pokemonPATH = pokemons.results[id].url
-      let responses = await fetch(pokemonPATH)
+      let pokemonPATH = pokemons.results[id].url;
+      let responses = await fetch(pokemonPATH);
       currentPokemon = await responses.json();
       let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
       if (!loadingCancel) {
@@ -72,7 +72,7 @@ function loadBreak(id) {
 
 async function loadPokemonCard(id) {
   let pokemonURL = pokemons.results[id].url;
-  let response = await fetch(pokemonURL)
+  let response = await fetch(pokemonURL);
   selectedPokemon = await response.json();
   showPokemonCard(id);
 }
