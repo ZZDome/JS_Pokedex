@@ -77,6 +77,10 @@ function drawCardBackground() {
       return 'red';
     case 'water':
       return 'blue';
+    case 'grass':
+      return 'green';
+    case 'bug':
+      return 'brown';
     default:
       return 'white';
   }
@@ -150,6 +154,7 @@ function templateShowPokemons(id, currentPokemon) {
   return /* html */ `
         <div onclick="loadBreak(${id})" class="pokemon">
             <h5>${pokemons.results[id].name}</h5>
+            <p>${currentPokemon.types[0].type.name}</p>
             <img src="${currentPokemon.sprites.front_default}">
         </div>
     `;
