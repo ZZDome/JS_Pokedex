@@ -11,9 +11,21 @@ let pokemonsURL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=898';
 //Functions//////////////////////////////////////////////////////////////////////
 
 function init() {
+  resetPage();
   drawHeader();
   drawMainContent();
   loadPokemons();
+}
+
+function resetPage() {
+  pokemons;
+  currentPokemon;
+  selectedPokemon;
+  loadingCancel = false;
+  loading = false;
+  pokemonCount = 0;
+  pokemonCountStep;
+  pokemonLenght = 50;
 }
 
 function drawHeader() {
@@ -86,6 +98,28 @@ function drawCardBackground(type) {/*
       return '#ecc44e';
     case 'poison':
       return '#9f5bba';
+    case 'normal':
+      return '#edafa7';
+    case 'ground':
+      return '#b2746c';
+    case 'fairy':
+      return '#ffe5e1';
+    case 'fighting':
+      return '#587ee7';
+    case 'psychic':
+      return '#cd7eeb';
+    case 'rock':
+      return '#b3b3b3';
+    case 'ghost':
+      return 'white';
+    case 'dragon':
+      return 'white';
+    case 'dark':
+      return 'white';
+    case 'ice':
+      return 'white';
+    case 'steel':
+      return 'white';
     default:
       return 'white';
   }
@@ -158,18 +192,20 @@ function templateMainContent() {
 function templateShowPokemons(id, currentPokemon, cardBG) {
   return /* html */ `
         <div onclick="loadBreak(${id})" class="pokemon" style="background-color: ${cardBG}">
-            <h5>${pokemons.results[id].name}</h5>
+            <h5>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h5>
             <p>${currentPokemon.types[0].type.name}</p>
+            <p></p>
             <img src="${currentPokemon.sprites.front_default}">
         </div>
     `;
-    
+
 }
 
 function templatePokemonCard(id, cardBG) {
   return /* html */ `
         <div class="pokemonCard" style="background-color: ${cardBG}">
-            <h2>${selectedPokemon.name}</h2>
+            <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
+            <p>${currentPokemon.types[0].type.name}</p>
             <img src="${selectedPokemon.sprites.front_default}">
         </div>
     `;

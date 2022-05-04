@@ -33,9 +33,10 @@ body{
 }
 
 .pokemon{
+    position: relative;
     margin: 10px;
     padding: 5px;
-    height: 300px;
+    height: 200px;
     width: 200px;
     border-radius: 20px;
     z-index: 1;
@@ -44,6 +45,9 @@ body{
 }
 
 .pokemon img{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
     height: 150px;
 }
 
