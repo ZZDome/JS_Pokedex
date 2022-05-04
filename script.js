@@ -200,10 +200,11 @@ function templateMainContent() {
 function templateShowPokemons(id, currentPokemon, cardBG) {
   return /* html */ `
         <div onclick="loadBreak(${id})" class="pokemon" style="background-color: ${cardBG}">
-            <h5>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h5>
+            <h4>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h4>
             <p>${currentPokemon.types[0].type.name}</p>
             <p>${checkType(currentPokemon.types[1])}</p>
             <img src="${currentPokemon.sprites.front_default}">
+            <p class="pokeID">#${currentPokemon.id}</p>
         </div>
     `;
 

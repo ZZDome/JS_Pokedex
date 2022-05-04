@@ -44,6 +44,12 @@ body{
     cursor: pointer;
 }
 
+.pokeID{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
 .pokemon img{
     position: absolute;
     right: 0px;
