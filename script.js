@@ -131,6 +131,14 @@ function checkScrollBottom() {
   }
 };
 
+function checkType(check){
+  if(!check){
+    return '';
+  }else{
+    return check.type.name;
+  }
+}
+
 //Templates////////////////////////////////////////////////////////////////////////
 
 function templateHeader() {
@@ -194,7 +202,7 @@ function templateShowPokemons(id, currentPokemon, cardBG) {
         <div onclick="loadBreak(${id})" class="pokemon" style="background-color: ${cardBG}">
             <h5>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h5>
             <p>${currentPokemon.types[0].type.name}</p>
-            <p></p>
+            <p>${checkType(currentPokemon.types[1])}</p>
             <img src="${currentPokemon.sprites.front_default}">
         </div>
     `;
