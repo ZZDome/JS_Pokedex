@@ -40,8 +40,9 @@ async function showPokemons() {
       let pokemonPATH = pokemons.results[id].url
       let responses = await fetch(pokemonPATH)
       currentPokemon = await responses.json();
+      let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
       if (!loadingCancel) {
-        content.innerHTML += templateShowPokemons(id, currentPokemon);
+        content.innerHTML += templateShowPokemons(id, currentPokemon, cardBG);
         pokemonCount++
       } else {
         break;
@@ -65,22 +66,26 @@ async function loadPokemonCard(id) {
 }
 
 function showPokemonCard(id) {
-  let cardBG = drawCardBackground();
+  let cardBG = drawCardBackground(selectedPokemon.types[0].type.name);
   let content = document.getElementById('mainContent');
   content.innerHTML += templatePokemonCard(id, cardBG);
 }
 
-function drawCardBackground() {
-  let type = selectedPokemon.types[0].type.name;
+function drawCardBackground(type) {/* 
+  let type = selectedPokemon.types[0].type.name; */
   switch (type) {
     case 'fire':
-      return 'red';
+      return '#fa6555';
     case 'water':
-      return 'blue';
+      return '#58abf6';
     case 'grass':
-      return 'green';
+      return '#47c5aa';
     case 'bug':
-      return 'brown';
+      return '#96a518';
+    case 'electric':
+      return '#ecc44e';
+    case 'poison':
+      return '#9f5bba';
     default:
       return 'white';
   }
@@ -111,7 +116,7 @@ function templateHeader() {
                   <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a onclick="init()" class="nav-link active" aria-current="page" href="#">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -150,9 +155,9 @@ function templateMainContent() {
     `;
 }
 
-function templateShowPokemons(id, currentPokemon) {
+function templateShowPokemons(id, currentPokemon, cardBG) {
   return /* html */ `
-        <div onclick="loadBreak(${id})" class="pokemon">
+        <div onclick="loadBreak(${id})" class="pokemon" style="background-color: ${cardBG}">
             <h5>${pokemons.results[id].name}</h5>
             <p>${currentPokemon.types[0].type.name}</p>
             <img src="${currentPokemon.sprites.front_default}">
