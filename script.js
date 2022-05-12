@@ -215,10 +215,11 @@ function templatePokemonCard(id, cardBG) {
       <div class="pokemonCardBG">
         <div class="pokemonCard" style="background-color: ${cardBG}">
             <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
-            <p>${currentPokemon.types[0].type.name}</p>
+            <p>${selectedPokemon.types[0].type.name}</p>
+            <p>${checkType(selectedPokemon.types[1])}</p>
             <img src="${selectedPokemon.sprites.front_default}">
             <div class="tabs">
-              
+
             </div>
         </div>
       </div>
