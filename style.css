@@ -57,16 +57,41 @@ body{
     height: 150px;
 }
 
+.pokemonCardBG{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: azure;
+    z-index: 3;
+}
+
 .pokemonCard{
     position: absolute;
     padding: 10px;
-    height: 600px;
-    width: 400px;
+    height: 90vh;
+    width: 60%;
     border-radius: 20px;
-    z-index: 3;
+    z-index: 4;
     background-color: beige;
 }
 
 .pokemonCard img{
-    height: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    height: 500px;
+}
+
+.tabs{
+    position: absolute;
+    margin: 20px;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    height: 50vh;
+    border-radius: 20px;
+    background-color: azure;
 }

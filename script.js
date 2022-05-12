@@ -212,10 +212,15 @@ function templateShowPokemons(id, currentPokemon, cardBG) {
 
 function templatePokemonCard(id, cardBG) {
   return /* html */ `
+      <div class="pokemonCardBG">
         <div class="pokemonCard" style="background-color: ${cardBG}">
             <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
             <p>${currentPokemon.types[0].type.name}</p>
             <img src="${selectedPokemon.sprites.front_default}">
+            <div class="tabs">
+              
+            </div>
         </div>
+      </div>
     `;
 }
