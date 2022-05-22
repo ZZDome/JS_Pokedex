@@ -303,8 +303,8 @@ function templatePokemonCard(id, cardBG) {
                   </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">...</div>
-                <div class="tab-pane fade" id="pills-moves" role="tabpanel" aria-labelledby="pills-moves-tab" tabindex="0">...</div>
+                <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">Avalable on future update.</div>
+                <div class="tab-pane fade" id="pills-moves" role="tabpanel" aria-labelledby="pills-moves-tab" tabindex="0">Avalable on future update.</div>
               </div>
             </div>
         </div>
