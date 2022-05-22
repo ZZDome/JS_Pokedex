@@ -42,7 +42,7 @@ function search() {
   let search = document.getElementById('searchInput').value;
   search = search.toLowerCase();
   if (search == '') {
-     //function 
+     init();
   } else {
       filterSearch(search);
   }
