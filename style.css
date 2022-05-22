@@ -133,13 +133,46 @@ body{
     margin: 14px;
 }
 
+@media(max-width: 900px){
+    .pokemonCard img{
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        z-index: 5;
+        height: 500px;
+    }
+}
+
 @media(max-width: 720px){
     .category{
         margin-left: 10px;
         font-size: 13px;
     }
+
     .values{
         margin-left: 10px;
         font-size: 13px;
+    }
+
+    .progress{
+        margin: 12px;
+    }
+
+    .pokemonCard img{
+        position: absolute;
+        top: 50px;
+        right: -30px;
+        z-index: 5;
+        height: 400px;
+    }
+}
+
+@media(max-width: 500px){
+    .pokemonCard img{
+        position: absolute;
+        top: 100px;
+        right: -30px;
+        z-index: 5;
+        height: 300px;
     }
 }
