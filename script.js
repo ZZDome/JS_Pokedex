@@ -47,6 +47,7 @@ async function loadPokemons() {
 async function showPokemons() {
   let content = document.getElementById('mainContent');
   let pokemonCountStep = pokemonCount + pokemonLenght;
+  loading = true;
   for (let id = pokemonCount; id < pokemonCountStep; id++) {
     if (!loadingCancel && pokemonCount <= 898) {
       let pokemonPATH = pokemons.results[id].url;
@@ -63,6 +64,7 @@ async function showPokemons() {
       break;
     }
   }
+  loading = false;
 }
 
 function loadBreak(id) {
@@ -126,15 +128,17 @@ function drawCardBackground(type) {/*
 }
 
 function checkScrollBottom() {
-  if (document.getElementById('mainContent').offsetHeight + document.getElementById('mainContent').scrollTop >= document.getElementById('mainContent').scrollHeight) {
-    showPokemons();
+  if (!loading) {
+    if (document.getElementById('mainContent').offsetHeight + document.getElementById('mainContent').scrollTop >= document.getElementById('mainContent').scrollHeight) {
+      showPokemons();
+    }
   }
 };
 
-function checkType(check){
-  if(!check){
+function checkType(check) {
+  if (!check) {
     return '';
-  }else{
+  } else {
     return check.type.name;
   }
 }
