@@ -110,7 +110,7 @@ body{
 }
 
 .values{
-    margin-left: 100px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
 }
@@ -131,4 +131,15 @@ body{
 }
 .progress{
     margin: 14px;
+}
+
+@media(max-width: 720px){
+    .category{
+        margin-left: 10px;
+        font-size: 13px;
+    }
+    .values{
+        margin-left: 10px;
+        font-size: 13px;
+    }
 }

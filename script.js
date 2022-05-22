@@ -268,8 +268,8 @@ function templatePokemonCard(id, cardBG) {
                     <span>HP</span>
                     <span>Attack</span>
                     <span>Defense</span>
-                    <span>Special Attack</span>
-                    <span>Special Defense</span>
+                    <span>Specialattack</span>
+                    <span>Specialdefense</span>
                     <span>Speed</span>
                   </div>
                   <div class="values">
