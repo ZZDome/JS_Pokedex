@@ -79,7 +79,7 @@ body{
 
 .pokemonCard img{
     position: absolute;
-    top: 0;
+    top: -50px;
     right: 0;
     z-index: 5;
     height: 500px;
@@ -94,4 +94,41 @@ body{
     height: 50vh;
     border-radius: 20px;
     background-color: azure;
+    display: flex;
+    flex-direction: column;
+}
+
+.disflex{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.category{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.values{
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category span{
+    margin: 10px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.values span{
+    margin: 10px;
+}
+
+.visual{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.progress{
+    margin: 14px;
 }

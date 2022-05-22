@@ -143,6 +143,14 @@ function checkType(check) {
   }
 }
 
+function checkAbility(check) {
+  if (!check) {
+    return '';
+  } else {
+    return check.ability.name.charAt(0).toUpperCase() + check.ability.name.slice(1);
+  }
+}
+
 //Templates////////////////////////////////////////////////////////////////////////
 
 function templateHeader() {
@@ -223,7 +231,81 @@ function templatePokemonCard(id, cardBG) {
             <p>${checkType(selectedPokemon.types[1])}</p>
             <img src="${selectedPokemon.sprites.front_default}">
             <div class="tabs">
-
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" type="button" role="tab" aria-controls="pills-about" aria-selected="true">About</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-basestats-tab" data-bs-toggle="pill" data-bs-target="#pills-basestats" type="button" role="tab" aria-controls="pills-basestats" aria-selected="false">Base Stats</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-evolution-tab" data-bs-toggle="pill" data-bs-target="#pills-evolution" type="button" role="tab" aria-controls="pills-evolution" aria-selected="false">Evolution</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-moves-tab" data-bs-toggle="pill" data-bs-target="#pills-moves" type="button" role="tab" aria-controls="pills-moves" aria-selected="false">Moves</button>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
+                  <div class="disflex">
+                  <div class="category">
+                    <span>Species</span>
+                    <span>Height</span>
+                    <span>Weight</span>
+                    <span>Abilities</span>
+                  </div>
+                  <div class="values">
+                    <span>${selectedPokemon.types[0].type.name.charAt(0).toUpperCase() + selectedPokemon.types[0].type.name.slice(1)}</span>
+                    <span>${selectedPokemon.height}0 cm</span>
+                    <span>${selectedPokemon.weight / 10} Kg</span>
+                    <span>${selectedPokemon.abilities[0].ability.name.charAt(0).toUpperCase() + selectedPokemon.abilities[0].ability.name.slice(1)}, ${checkAbility(selectedPokemon.abilities[1])}</span>
+                  </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-basestats" role="tabpanel" aria-labelledby="pills-basestats-tab" tabindex="0">
+                <div class="disflex">
+                  <div class="category">
+                    <span>HP</span>
+                    <span>Attack</span>
+                    <span>Defense</span>
+                    <span>Special Attack</span>
+                    <span>Special Defense</span>
+                    <span>Speed</span>
+                  </div>
+                  <div class="values">
+                    <span><b>${selectedPokemon.stats[0].base_stat}</b></span>
+                    <span><b>${selectedPokemon.stats[1].base_stat}</b></span>
+                    <span><b>${selectedPokemon.stats[2].base_stat}</b></span>
+                    <span><b>${selectedPokemon.stats[3].base_stat}</b></span>
+                    <span><b>${selectedPokemon.stats[4].base_stat}</b></span>
+                    <span><b>${selectedPokemon.stats[5].base_stat}</b></span>
+                  </div>
+                  <div class="visual">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[0].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[1].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[2].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[3].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[4].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[5].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">...</div>
+                <div class="tab-pane fade" id="pills-moves" role="tabpanel" aria-labelledby="pills-moves-tab" tabindex="0">...</div>
+              </div>
             </div>
         </div>
       </div>
