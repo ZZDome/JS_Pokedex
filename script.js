@@ -38,6 +38,26 @@ function drawMainContent() {
   content.innerHTML += templateMainContent();
 }
 
+function search() {
+  let search = document.getElementById('searchInput').value;
+  search = search.toLowerCase();
+  if (search == '') {
+     //function 
+  } else {
+      filterSearch(search);
+  }
+}
+
+function filterSearch(search) {
+  let searchcontent = document.getElementById('mainContent');
+  searchcontent.innerHTML = ``;
+  for (let i = 0; i <= pokemons.length - 1; i++) {
+      if (pokemons.results[i].name.toLowerCase().includes(search)) {
+          searchcontent.innerHTML += showFilter(i);
+      }
+  }
+}
+
 async function loadPokemons() {
   let response = await fetch(pokemonsURL);
   pokemons = await response.json();
@@ -190,8 +210,7 @@ function templateHeader() {
                       </li>
                     </ul>
                     <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
+                      <input class="form-control me-2" onkeyup="search()" id="searchInput" type="search" placeholder="Search" aria-label="Search">
                     </form>
                   </div>
                 </div>
