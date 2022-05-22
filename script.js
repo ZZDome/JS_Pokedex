@@ -53,7 +53,7 @@ function filterSearch(search) {
   searchcontent.innerHTML = ``;
   for (let i = 0; i <= pokemons.length - 1; i++) {
       if (pokemons.results[i].name.toLowerCase().includes(search)) {
-          searchcontent.innerHTML += showFilter(i);
+          searchcontent.innerHTML +=templateShowFilter(i) ;
       }
   }
 }
