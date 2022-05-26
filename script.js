@@ -46,12 +46,17 @@ function search() {
   }
 }
 
-function filterSearch(search) {
+async function filterSearch(search) {
   let searchcontent = document.getElementById('mainContent');
   searchcontent.innerHTML = ``;
-  for (let i = 0; i <= pokemons.length - 1; i++) {
-    if (pokemons.results[i].name.toLowerCase().includes(search)) {
-      searchcontent.innerHTML += templateShowFilter(i);
+  for (let i = 0; i <= pokemons.results.length - 1; i++) {
+    if (pokemons.results[i].name.includes(search)) {
+      
+      let pokemonPATH = pokemons.results[i].url;
+      let responses = await fetch(pokemonPATH);
+      currentPokemon = await responses.json();
+      let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
+      searchcontent.innerHTML += templateShowPokemons(i, currentPokemon, cardBG);
     }
   }
 }
@@ -168,6 +173,8 @@ function closePokemoncard() {
   document.getElementById("xBtn").classList.add("hide");
 }
 
+
+
 //Templates////////////////////////////////////////////////////////////////////////
 
 function templateHeader() {
@@ -206,8 +213,9 @@ function templateHeader() {
                         </ul>
                       </li>
                     </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-2" onkeyup="search()" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" role="search">
+                      <input id="searchInput" class="form-control me-2" placeholder="Search" aria-label="Search">
+                      <button onclick="search()" class="btn btn-outline-success">Search</button>
                     </form>
                   </div>
                 </div>
