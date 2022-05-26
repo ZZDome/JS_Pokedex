@@ -1,7 +1,6 @@
 let pokemons;
 let currentPokemon;
 let selectedPokemon;
-let loadingCancel = false;
 let loading = false;
 let pokemonCount = 0;
 let pokemonCountStep;
@@ -21,7 +20,6 @@ function resetPage() {
   pokemons;
   currentPokemon;
   selectedPokemon;
-  loadingCancel = false;
   loading = false;
   pokemonCount = 0;
   pokemonCountStep;
@@ -42,9 +40,9 @@ function search() {
   let search = document.getElementById('searchInput').value;
   search = search.toLowerCase();
   if (search == '') {
-     init();
+    init();
   } else {
-      filterSearch(search);
+    filterSearch(search);
   }
 }
 
@@ -52,9 +50,9 @@ function filterSearch(search) {
   let searchcontent = document.getElementById('mainContent');
   searchcontent.innerHTML = ``;
   for (let i = 0; i <= pokemons.length - 1; i++) {
-      if (pokemons.results[i].name.toLowerCase().includes(search)) {
-          searchcontent.innerHTML +=templateShowFilter(i) ;
-      }
+    if (pokemons.results[i].name.toLowerCase().includes(search)) {
+      searchcontent.innerHTML += templateShowFilter(i);
+    }
   }
 }
 
@@ -69,17 +67,13 @@ async function showPokemons() {
   let pokemonCountStep = pokemonCount + pokemonLenght;
   loading = true;
   for (let id = pokemonCount; id < pokemonCountStep; id++) {
-    if (!loadingCancel && pokemonCount <= 898) {
+    if (pokemonCount <= 898) {
       let pokemonPATH = pokemons.results[id].url;
       let responses = await fetch(pokemonPATH);
       currentPokemon = await responses.json();
       let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
-      if (!loadingCancel) {
-        content.innerHTML += templateShowPokemons(id, currentPokemon, cardBG);
-        pokemonCount++
-      } else {
-        break;
-      }
+      content.innerHTML += templateShowPokemons(id, currentPokemon, cardBG);
+      pokemonCount++
     } else {
       break;
     }
@@ -87,22 +81,20 @@ async function showPokemons() {
   loading = false;
 }
 
-function loadBreak(id) {
-  loadingCancel = true;
-  loadPokemonCard(id);
-}
-
 async function loadPokemonCard(id) {
   let pokemonURL = pokemons.results[id].url;
   let response = await fetch(pokemonURL);
   selectedPokemon = await response.json();
   showPokemonCard(id);
+
+  document.getElementById("cardContent").classList.remove("hide");
+  document.getElementById("xBtn").classList.remove("hide");
 }
 
 function showPokemonCard(id) {
   let cardBG = drawCardBackground(selectedPokemon.types[0].type.name);
-  let content = document.getElementById('mainContent');
-  content.innerHTML += templatePokemonCard(id, cardBG);
+  let content = document.getElementById('cardContent');
+  content.innerHTML = templatePokemonCard(id, cardBG);
 }
 
 function drawCardBackground(type) {/* 
@@ -171,6 +163,11 @@ function checkAbility(check) {
   }
 }
 
+function closePokemoncard() {
+  document.getElementById("cardContent").classList.add("hide");
+  document.getElementById("xBtn").classList.add("hide");
+}
+
 //Templates////////////////////////////////////////////////////////////////////////
 
 function templateHeader() {
@@ -230,7 +227,8 @@ function templateMainContent() {
 
 function templateShowPokemons(id, currentPokemon, cardBG) {
   return /* html */ `
-        <div onclick="loadBreak(${id})" class="pokemon" style="background-color: ${cardBG}">
+        <div id="cardContent"></div>
+        <div onclick="loadPokemonCard(${id})" class="pokemon" style="background-color: ${cardBG}">
             <h4>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h4>
             <p>${currentPokemon.types[0].type.name}</p>
             <p>${checkType(currentPokemon.types[1])}</p>
@@ -243,8 +241,9 @@ function templateShowPokemons(id, currentPokemon, cardBG) {
 
 function templatePokemonCard(id, cardBG) {
   return /* html */ `
-      <div class="pokemonCardBG">
+      <div id="pokemonCardBG" class="pokemonCardBG">
         <div class="pokemonCard" style="background-color: ${cardBG}">
+        <button onclick="closePokemoncard()" id="xBtn" class="btn-close"></button>
             <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
             <p>${selectedPokemon.types[0].type.name}</p>
             <p>${checkType(selectedPokemon.types[1])}</p>
