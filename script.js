@@ -37,8 +37,8 @@ function drawMainContent() {
 }
 
 function search() {
-  let search = document.getElementById('searchInput').value;
-  search = search.toLowerCase();
+  let search = document.getElementById('searchInput');
+  search = search.value.toLowerCase();
   if (search == '') {
     init();
   } else {
@@ -213,10 +213,10 @@ function templateHeader() {
                         </ul>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input id="searchInput" class="form-control me-2" placeholder="Search" aria-label="Search">
+                    <div class="d-flex">
+                      <input id="searchInput" class="me-2" placeholder="Search" aria-label="Search">
                       <button onclick="search()" class="btn btn-outline-success">Search</button>
-                    </form>
+</div>
                   </div>
                 </div>
               </div>
