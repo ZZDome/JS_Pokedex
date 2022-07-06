@@ -183,6 +183,10 @@ function templateHeader() {
             <nav class="navbar navbar-light bg-light fixed-top">
               <div class="container-fluid">
                 <a class="navbar-brand" href="#"><h1>Pokedex</h1></a>
+                <div class="d-flex">
+                      <input id="searchInput" class="me-2" placeholder="Search" aria-label="Search">
+                      <button onclick="search()" class="btn btn-outline-success">Search</button>
+                    </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -194,29 +198,19 @@ function templateHeader() {
                   <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                       <li class="nav-item">
-                        <a onclick="init()" class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a onclick="init()" class="nav-link" aria-current="page" href="#">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                       </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li>
-                            <hr class="dropdown-divider">
-                          </li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
                       </li>
                     </ul>
                     <div class="d-flex">
                       <input id="searchInput" class="me-2" placeholder="Search" aria-label="Search">
                       <button onclick="search()" class="btn btn-outline-success">Search</button>
-</div>
+                    </div>
                   </div>
                 </div>
               </div>
