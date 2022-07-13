@@ -184,8 +184,8 @@ function templateHeader() {
               <div class="container-fluid">
                 <a class="navbar-brand" href="#"><h1>Pokedex</h1></a>
                 <div class="d-flex">
-                      <input id="searchInput" class="me-2" placeholder="Search" aria-label="Search">
-                      <button onclick="search()" class="btn btn-outline-success">Search</button>
+                      <input id="searchInput" class="me-2 searchHeadlineHide" placeholder="Search" aria-label="Search">
+                      <button onclick="search()" class="btn btn-outline-success searchHeadlineHide">Search</button>
                     </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                   <span class="navbar-toggler-icon"></span>
@@ -204,7 +204,7 @@ function templateHeader() {
                         <a class="nav-link" href="#">Link</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a onclick="alert('avalable on future update!')" class="nav-link" href="#">Impressum</a>
                       </li>
                     </ul>
                     <div class="d-flex">
@@ -232,8 +232,8 @@ function templateShowPokemons(id, currentPokemon, cardBG) {
         <div id="cardContent"></div>
         <div onclick="loadPokemonCard(${id})" class="pokemon" style="background-color: ${cardBG}">
             <h4>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h4>
-            <p>${currentPokemon.types[0].type.name}</p>
-            <p>${checkType(currentPokemon.types[1])}</p>
+            <p class="pokemonType">${currentPokemon.types[0].type.name}</p>
+            <p class="pokemonType">${checkType(currentPokemon.types[1])}</p>
             <img src="${currentPokemon.sprites.front_default}">
             <p class="pokeID">#${currentPokemon.id}</p>
         </div>
@@ -247,8 +247,8 @@ function templatePokemonCard(id, cardBG) {
         <div class="pokemonCard" style="background-color: ${cardBG}">
         <button onclick="closePokemoncard()" id="xBtn" class="btn-close"></button>
             <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
-            <p>${selectedPokemon.types[0].type.name}</p>
-            <p>${checkType(selectedPokemon.types[1])}</p>
+            <p class="pokemonType">${selectedPokemon.types[0].type.name}</p>
+            <p class="pokemonType">${checkType(selectedPokemon.types[1])}</p>
             <img src="${selectedPokemon.sprites.front_default}">
             <div class="tabs">
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

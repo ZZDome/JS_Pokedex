@@ -78,6 +78,14 @@ body{
     height: 150px;
 }
 
+.pokemonType{
+    border-radius: 5px;
+    width: 4rem;
+    text-align: center;
+    border: solid 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 .pokemonCardBG{
     position: fixed;
     display: flex;
@@ -118,6 +126,9 @@ body{
     display: flex;
     flex-direction: column;
     z-index: 6;
+    border: solid 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .disflex{
@@ -196,5 +207,8 @@ body{
         right: -30px;
         z-index: 5;
         height: 200px;
+    }
+    .searchHeadlineHide{
+        display: none !important;
     }
 }
