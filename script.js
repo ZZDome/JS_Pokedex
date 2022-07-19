@@ -202,7 +202,7 @@ function templateHeader() {
                         <a onclick="init()" class="nav-link" aria-current="page" href="#">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="https://pokeapi.co">used API</a>
                       </li>
                       <li class="nav-item">
                         <a onclick="alert('avalable on future update!')" class="nav-link" href="#">Impressum</a>
