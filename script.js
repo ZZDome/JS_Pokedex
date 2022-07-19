@@ -46,6 +46,16 @@ function search() {
   }
 }
 
+function search2() {
+  let search = document.getElementById('searchInput2');
+  search = search.value.toLowerCase();
+  if (search == '') {
+    init();
+  } else {
+    filterSearch(search);
+  }
+}
+
 async function filterSearch(search) {
   let searchcontent = document.getElementById('mainContent');
   searchcontent.innerHTML = ``;
@@ -209,8 +219,8 @@ function templateHeader() {
                       </li>
                     </ul>
                     <div class="d-flex">
-                      <input id="searchInput" class="me-2" placeholder="Search" aria-label="Search">
-                      <button onclick="search()" class="btn btn-outline-success">Search</button>
+                      <input id="searchInput2" class="me-2" placeholder="Search" aria-label="Search">
+                      <button onclick="search2()" class="btn btn-outline-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">Search</button>
                     </div>
                   </div>
                 </div>
