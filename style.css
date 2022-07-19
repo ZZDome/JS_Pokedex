@@ -188,6 +188,13 @@ body{
     margin: 14px;
 }
 
+.canvasBG{
+    background-image: url("img/canvasBG.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
