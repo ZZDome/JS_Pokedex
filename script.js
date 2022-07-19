@@ -130,15 +130,15 @@ function drawCardBackground(type) {/*
     case 'rock':
       return '#b3b3b3';
     case 'ghost':
-      return 'white';
+      return '#c2a4c9';
     case 'dragon':
-      return 'white';
+      return '#58cf59';
     case 'dark':
-      return 'white';
+      return ' #8d6f6f';
     case 'ice':
-      return 'white';
+      return '#bbc8fd';
     case 'steel':
-      return 'white';
+      return '#cdcdcd';
     default:
       return 'white';
   }
@@ -152,7 +152,7 @@ function checkScrollBottom() {
   }
 };
 
-function checkType(check) {
+function checkType(check, id) {
   if (!check) {
     return '';
   } else {
@@ -179,10 +179,11 @@ function closePokemoncard() {
 
 function templateHeader() {
   return /* html */ `
-        <div class='headerContainer'>
-            <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="headerContainer">
+            <nav class="navbar navbar-light bg-info fixed-top">
               <div class="container-fluid">
-                <a class="navbar-brand" href="#"><h1>Pokedex</h1></a>
+                <!-- <a class="navbar-brand" href="#"><h1>Pokedex</h1></a> -->
+                <img class="headerBG" src="img/banner.png" alt="">
                 <div class="d-flex">
                       <input id="searchInput" class="me-2 searchHeadlineHide" placeholder="Search" aria-label="Search">
                       <button onclick="search()" class="btn btn-outline-success searchHeadlineHide">Search</button>
