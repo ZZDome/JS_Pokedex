@@ -41,8 +41,7 @@ body{
 
 #mainContent{
     position: absolute;
-    top: 10vh;/* 
-    padding-top: 100px; */
+    top: 10vh;
     height: 90vh;
     width: 100%;
     max-width: 1920px;
