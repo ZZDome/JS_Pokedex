@@ -86,7 +86,8 @@ async function showPokemons() {
       let responses = await fetch(pokemonPATH);
       currentPokemon = await responses.json();
       let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
-      content.innerHTML += templateShowPokemons(id, currentPokemon, cardBG);
+      let hide = hideType(currentPokemon.types[1]);
+      content.innerHTML += templateShowPokemons(id, currentPokemon, cardBG, hide);
       pokemonCount++
     } else {
       break;
@@ -108,7 +109,8 @@ async function loadPokemonCard(id) {
 function showPokemonCard(id) {
   let cardBG = drawCardBackground(selectedPokemon.types[0].type.name);
   let content = document.getElementById('cardContent');
-  content.innerHTML = templatePokemonCard(id, cardBG);
+  let hide = hideType(currentPokemon.types[1]);
+  content.innerHTML = templatePokemonCard(id, cardBG, hide);
 }
 
 function drawCardBackground(type) {
@@ -159,6 +161,14 @@ function checkScrollBottom() {
     }
   }
 };
+
+function hideType(check) {
+  if (!check) {
+    return 'hide';
+  } else {
+    return '';
+  }
+}
 
 function checkType(check, id) {
   if (!check) {

@@ -49,13 +49,13 @@ function templateHeader() {
       `;
   }
   
-  function templateShowPokemons(id, currentPokemon, cardBG) {
+  function templateShowPokemons(id, currentPokemon, cardBG, hide) {
     return /* html */ `
           <div id="cardContent"></div>
           <div onclick="loadPokemonCard(${id})" class="pokemon" style="background-color: ${cardBG}">
               <h4>${pokemons.results[id].name.charAt(0).toUpperCase() + pokemons.results[id].name.slice(1)}</h4>
               <p class="pokemonType">${currentPokemon.types[0].type.name}</p>
-              <p class="pokemonType">${checkType(currentPokemon.types[1])}</p>
+              <p class="pokemonType ${hide}">${checkType(currentPokemon.types[1])}</p>
               <img src="${currentPokemon.sprites.front_default}">
               <p class="pokeID">#${currentPokemon.id}</p>
           </div>
@@ -63,14 +63,14 @@ function templateHeader() {
   
   }
   
-  function templatePokemonCard(id, cardBG) {
+  function templatePokemonCard(id, cardBG, hide) {
     return /* html */ `
         <div id="pokemonCardBG" class="pokemonCardBG">
           <div class="pokemonCard" style="background-color: ${cardBG}">
           <button onclick="closePokemoncard()" id="xBtn" class="btn-close"></button>
               <h2>${selectedPokemon.name.charAt(0).toUpperCase() + selectedPokemon.name.slice(1)}</h2>
               <p class="pokemonType">${selectedPokemon.types[0].type.name}</p>
-              <p class="pokemonType">${checkType(selectedPokemon.types[1])}</p>
+              <p class="pokemonType ${hide}">${checkType(selectedPokemon.types[1])}</p>
               <img src="${selectedPokemon.sprites.front_default}">
               <div class="tabs">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
