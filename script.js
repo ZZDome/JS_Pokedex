@@ -65,7 +65,8 @@ async function filterSearch(search) {
       let responses = await fetch(pokemonPATH);
       currentPokemon = await responses.json();
       let cardBG = drawCardBackground(currentPokemon.types[0].type.name);
-      searchcontent.innerHTML += templateShowPokemons(i, currentPokemon, cardBG);
+      let hide = hideType(currentPokemon.types[1]);
+      searchcontent.innerHTML += templateShowPokemons(i, currentPokemon, cardBG, hide);
     }
   }
 }
@@ -111,6 +112,14 @@ function showPokemonCard(id) {
   let content = document.getElementById('cardContent');
   let hide = hideType(currentPokemon.types[1]);
   content.innerHTML = templatePokemonCard(id, cardBG, hide);
+}
+
+function showMoves(pokemon){
+  for (let i = 0; i < pokemon.moves.length; i++) {
+    const move = pokemon.moves[i].move.name;
+    let content = document.getElementById('moveContent');
+    content.innerHTML += templateShowMove(move);
+  };
 }
 
 function drawCardBackground(type) {

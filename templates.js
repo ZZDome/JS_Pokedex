@@ -60,7 +60,12 @@ function templateHeader() {
               <p class="pokeID">#${currentPokemon.id}</p>
           </div>
       `;
-  
+  }
+
+  function templateShowMove(move) {
+    return /* html */ `
+          <span class="pokemonMove">${move}</span>
+      `;
   }
   
   function templatePokemonCard(id, cardBG, hide) {
@@ -81,10 +86,7 @@ function templateHeader() {
                     <button class="nav-link" id="pills-basestats-tab" data-bs-toggle="pill" data-bs-target="#pills-basestats" type="button" role="tab" aria-controls="pills-basestats" aria-selected="false">Base Stats</button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-evolution-tab" data-bs-toggle="pill" data-bs-target="#pills-evolution" type="button" role="tab" aria-controls="pills-evolution" aria-selected="false">Evolution</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-moves-tab" data-bs-toggle="pill" data-bs-target="#pills-moves" type="button" role="tab" aria-controls="pills-moves" aria-selected="false">Moves</button>
+                    <button onclick="showMoves(selectedPokemon)" class="nav-link" id="pills-moves-tab" data-bs-toggle="pill" data-bs-target="#pills-moves" type="button" role="tab" aria-controls="pills-moves" aria-selected="false">Moves</button>
                   </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -141,12 +143,13 @@ function templateHeader() {
                       <div class="progress">
                         <div class="progress-bar" role="progressbar" style="background-color: ${cardBG}; width: ${selectedPokemon.stats[5].base_stat}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      
                     </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="pills-evolution" role="tabpanel" aria-labelledby="pills-evolution-tab" tabindex="0">Avalable on future update.</div>
-                  <div class="tab-pane fade" id="pills-moves" role="tabpanel" aria-labelledby="pills-moves-tab" tabindex="0">Avalable on future update.</div>
+                  <div class="tab-pane fade" id="pills-moves" role="tabpanel" aria-labelledby="pills-moves-tab" tabindex="0">
+                    <div id="moveContent" class="moveContent">
+                    </div>
+                  </div>
                 </div>
               </div>
           </div>
