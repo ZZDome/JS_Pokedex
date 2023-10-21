@@ -110,7 +110,7 @@ async function loadPokemonCard(id) {
 function showPokemonCard(id) {
   let cardBG = drawCardBackground(selectedPokemon.types[0].type.name);
   let content = document.getElementById('cardContent');
-  let hide = hideType(currentPokemon.types[1]);
+  let hide = hideType(selectedPokemon.types[1]);
   content.innerHTML = templatePokemonCard(id, cardBG, hide);
 }
 
