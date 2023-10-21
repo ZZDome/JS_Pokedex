@@ -115,9 +115,10 @@ function showPokemonCard(id) {
 }
 
 function showMoves(pokemon){
+  let content = document.getElementById('moveContent');
+  content.innerHTML = ``;
   for (let i = 0; i < pokemon.moves.length; i++) {
     const move = pokemon.moves[i].move.name;
-    let content = document.getElementById('moveContent');
     content.innerHTML += templateShowMove(move);
   };
 }
